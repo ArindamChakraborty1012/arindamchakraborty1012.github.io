@@ -19,10 +19,10 @@ function initialize() {
 
     // Responsive visible boxes
     if (window.innerWidth < 768) {
-        visibleBoxes = 1;
+        visibleBoxes = 2;
     }
     else if (window.innerWidth < 992) {
-        visibleBoxes = 2;
+        visibleBoxes = 3;
     }
     else {
         visibleBoxes = 5;

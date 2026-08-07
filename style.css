@@ -248,7 +248,7 @@ body{
 .loader > .box{
     position:absolute;
     top: 8%;
-    padding: 0.5%;
+    padding: 1%;
     width: 120px;
     height: auto;
     font-size: medium;
@@ -260,7 +260,7 @@ body{
 .loader > .box:hover{
     position:absolute;
     top: 8%;
-    padding: 0.5%;
+    padding: 1%;
     font-size: medium;
     width: 130px;
     height: auto;
