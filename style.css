@@ -251,6 +251,7 @@ body{
     padding: 0.5%;
     width: 120px;
     height: 125px;
+    font-size: medium;
     border-radius:20%;
     background:orange;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -260,6 +261,7 @@ body{
     position:absolute;
     top: 8%;
     padding: 0.5%;
+    font-size: medium;
     width: 130px;
     height: 125px;
     border-radius:20%;
