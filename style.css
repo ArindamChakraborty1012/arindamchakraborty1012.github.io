@@ -250,7 +250,7 @@ body{
     top: 8%;
     padding: 0.5%;
     width: 120px;
-    height: 125px;
+    height: auto;
     font-size: medium;
     border-radius:20%;
     background:orange;
@@ -263,7 +263,7 @@ body{
     padding: 0.5%;
     font-size: medium;
     width: 130px;
-    height: 125px;
+    height: auto;
     border-radius:20%;
     background:orange;
     transform: translateY(0%) scale(1.1);
