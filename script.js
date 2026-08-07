@@ -1,63 +1,97 @@
 const loader = document.querySelector(".loader");
 const boxes = document.querySelectorAll(".box");
 
-const visibleBoxes = 5;
-const speed = 1;          // pixels per frame
+const speed = 1;
 
-const loaderWidth = loader.clientWidth;
-const boxWidth = boxes[0].offsetWidth;;
+let visibleBoxes = 5;
+let loaderWidth;
+let boxWidth;
+let gap;
+let step;
 
-/* Equal spacing so exactly 4 boxes are visible */
-const spacing = (loaderWidth - boxWidth) / (visibleBoxes - 1);
-
-/* Initial positions */
 let positions = [];
-
-boxes.forEach((box, i) => {
-
-    let x;
-
-    if(i < visibleBoxes){
-        x = i * spacing;
-    }else{
-        x = loaderWidth + (i-visibleBoxes+1)*spacing;
-    }
-
-    positions.push(x);
-
-    box.style.left = x + "px";
-});
-
 let paused = false;
 
-loader.addEventListener("mouseenter", () => {
-    paused = true;
-});
+function initialize() {
 
-loader.addEventListener("mouseleave", () => {
-    paused = false;
-});
+    loaderWidth = loader.clientWidth;
+    boxWidth = boxes[0].offsetWidth;
 
-function animate(){
+    // Responsive visible boxes
+    if (window.innerWidth < 576)
+        visibleBoxes = 2;
+    else if (window.innerWidth < 768)
+        visibleBoxes = 3;
+    else if (window.innerWidth < 992)
+        visibleBoxes = 4;
+    else
+        visibleBoxes = 5;
 
-    if(!paused){
-        for(let i=0;i<boxes.length;i++){
+    // Space between two boxes
+    gap = (loaderWidth - visibleBoxes * boxWidth) / (visibleBoxes - 1);
 
-            positions[i]-=speed;
+    // Prevent overlap
+    if (gap < 10)
+        gap = 10;
 
-            /* Re-enter immediately after leaving */
-            if(positions[i] < -boxWidth){
+    step = boxWidth + gap;
 
-                let max = Math.max(...positions);
+    positions = [];
 
-                positions[i] = max + spacing;
+    boxes.forEach((box, i) => {
+
+        let x;
+
+        if (i < visibleBoxes) {
+
+            // Visible boxes
+            x = i * step;
+
+        } else {
+
+            // Hidden boxes start AFTER the last visible box
+            x = loaderWidth + (i - visibleBoxes + 1) * step;
+
+        }
+
+        positions.push(x);
+        box.style.left = x + "px";
+
+    });
+
+}
+
+initialize();
+
+window.addEventListener("resize", initialize);
+
+loader.addEventListener("mouseenter", () => paused = true);
+loader.addEventListener("mouseleave", () => paused = false);
+
+function animate() {
+
+    if (!paused) {
+
+        for (let i = 0; i < boxes.length; i++) {
+
+            positions[i] -= speed;
+
+            if (positions[i] < -boxWidth) {
+
+                const rightMost = Math.max(...positions);
+
+                positions[i] = rightMost + step;
+
             }
 
-            boxes[i].style.left = positions[i]+"px";
+            boxes[i].style.left = positions[i] + "px";
+
         }
+
     }
 
     requestAnimationFrame(animate);
+
 }
 
 animate();
