@@ -18,14 +18,18 @@ function initialize() {
     boxWidth = boxes[0].offsetWidth;
 
     // Responsive visible boxes
-    if (window.innerWidth < 576)
+    if (window.innerWidth < 480) {
         visibleBoxes = 2;
-    else if (window.innerWidth < 768)
+    }
+    else if (window.innerWidth < 768) {
         visibleBoxes = 3;
-    else if (window.innerWidth < 992)
+    }
+    else if (window.innerWidth < 992) {
         visibleBoxes = 4;
-    else
+    }
+    else {
         visibleBoxes = 5;
+    }
 
     // Space between two boxes
     gap = (loaderWidth - visibleBoxes * boxWidth) / (visibleBoxes - 1);
