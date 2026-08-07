@@ -18,14 +18,11 @@ function initialize() {
     boxWidth = boxes[0].offsetWidth;
 
     // Responsive visible boxes
-    if (window.innerWidth < 480) {
-        visibleBoxes = 2;
-    }
-    else if (window.innerWidth < 768) {
-        visibleBoxes = 3;
+    if (window.innerWidth < 768) {
+        visibleBoxes = 1;
     }
     else if (window.innerWidth < 992) {
-        visibleBoxes = 4;
+        visibleBoxes = 2;
     }
     else {
         visibleBoxes = 5;
