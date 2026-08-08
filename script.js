@@ -23,7 +23,7 @@ loaders.forEach(loader => {
         boxWidth = boxes[0].offsetWidth;
 
         // Fixed gap between boxes
-        gap = 30;
+        gap = 100;
 
         step = boxWidth + gap;
 
