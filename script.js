@@ -86,3 +86,18 @@ loaders.forEach(loader => {
     animate();
 
 });
+
+const navbar = document.querySelector(".navbar");
+
+function updateNavbarHeight() {
+    const height = navbar.offsetHeight;
+
+    document.documentElement.style.setProperty(
+        "--navbar-height",
+        height + "px"
+    );
+}
+
+updateNavbarHeight();
+
+window.addEventListener("resize", updateNavbarHeight);
