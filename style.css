@@ -220,7 +220,7 @@ body{
 
 .loader{
     width:90%;
-    height: 170px;
+    height: 200px;
     position:relative;
     overflow:hidden;
     display:flex;

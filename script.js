@@ -1,95 +1,88 @@
-const loader = document.querySelector(".loader");
-const boxes = document.querySelectorAll(".box");
+const loaders = document.querySelectorAll(".loader");
 
 const speed = 1;
+const visibleBoxes = 5;
 
-let visibleBoxes = 5;
-let loaderWidth;
-let boxWidth;
-let gap;
-let step;
+loaders.forEach(loader => {
 
-let positions = [];
-let paused = false;
+    // Get only the boxes belonging to THIS loader
+    const boxes = loader.querySelectorAll(".box");
 
-function initialize() {
+    if (boxes.length === 0) return;
 
-    loaderWidth = loader.clientWidth;
-    boxWidth = boxes[0].offsetWidth;
+    let loaderWidth;
+    let boxWidth;
+    let gap;
+    let step;
+    let positions = [];
+    let paused = false;
 
-    // Responsive visible boxes
-    if (window.innerWidth < 992) {
-        visibleBoxes = 2;
+    function initialize() {
+
+        loaderWidth = loader.clientWidth;
+        boxWidth = boxes[0].offsetWidth;
+
+        // Fixed gap between boxes
+        gap = 30;
+
+        step = boxWidth + gap;
+
+        positions = [];
+
+        boxes.forEach((box, i) => {
+
+            // Place every box with equal spacing
+            let x = i * step;
+
+            positions.push(x);
+
+            box.style.left = x + "px";
+        });
     }
-    else {
-        visibleBoxes = 5;
-    }
 
-    // Space between two boxes
-    gap = (loaderWidth - visibleBoxes * boxWidth) / (visibleBoxes - 1);
+    initialize();
 
-    // Prevent overlap
-    if (gap < 10)
-        gap = 10;
+    // Recalculate when window size changes
+    window.addEventListener("resize", initialize);
 
-    step = boxWidth + gap;
+    // Pause only when hovering over a box
+    boxes.forEach(box => {
 
-    positions = [];
+        box.addEventListener("mouseenter", () => {
+            paused = true;
+        });
 
-    boxes.forEach((box, i) => {
-
-        let x;
-
-        if (i < visibleBoxes) {
-
-            // Visible boxes
-            x = i * step;
-
-        } else {
-
-            // Hidden boxes start AFTER the last visible box
-            x = loaderWidth + (i - visibleBoxes + 1) * step;
-
-        }
-
-        positions.push(x);
-        box.style.left = x + "px";
+        box.addEventListener("mouseleave", () => {
+            paused = false;
+        });
 
     });
 
-}
+    function animate() {
 
-initialize();
+        if (!paused) {
 
-window.addEventListener("resize", initialize);
+            for (let i = 0; i < boxes.length; i++) {
 
-loader.addEventListener("mouseenter", () => paused = true);
-loader.addEventListener("mouseleave", () => paused = false);
+                positions[i] -= speed;
 
-function animate() {
+                // Box has completely left the loader
+                if (positions[i] < -boxWidth) {
 
-    if (!paused) {
+                    // Find rightmost box
+                    const rightMost = Math.max(...positions);
 
-        for (let i = 0; i < boxes.length; i++) {
+                    // Put this box after the rightmost box
+                    positions[i] = rightMost + step;
+                }
 
-            positions[i] -= speed;
-
-            if (positions[i] < -boxWidth) {
-
-                const rightMost = Math.max(...positions);
-
-                positions[i] = rightMost + step;
-
+                boxes[i].style.left = positions[i] + "px";
             }
-
-            boxes[i].style.left = positions[i] + "px";
-
         }
 
+        requestAnimationFrame(animate);
     }
 
-    requestAnimationFrame(animate);
+    animate();
 
-}
-
-animate();
+});
