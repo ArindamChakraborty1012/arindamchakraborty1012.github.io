@@ -274,3 +274,50 @@ body{
 .loader > .box > .box-text{
     font-family: cursive;
 }
+
+
+.timeline-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.timeline {
+    position: relative;
+    width: fit-content;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-height: 60px;
+}
+
+.circle {
+    width: 18px;
+    height: 18px;
+    background-color: orange;
+    border: 3px solid black;
+    border-radius: 50%;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.timeline-text {
+    margin-left: 20px;
+    font-size: medium;
+    font-family: cursive;
+}
+
+/* Vertical connecting line */
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 10px;
+    bottom: 10px;
+    width: 3px;
+    background-color: black;
+    z-index: 1;
+}
