@@ -75,7 +75,7 @@ html {
     top: 0;
     z-index: 1000;
 
-    animation: appear 1.5s ease-out forwards;
+    animation: appear 0.5s ease-out forwards;
 }
 
 .navbar > nav {
@@ -93,7 +93,7 @@ html {
     text-align: center;
 
     font-size: x-large;
-    font-family: cursive;
+    font-family: Times New Roman, Times, serif;
     font-weight: bolder;
 
     width: auto;
@@ -199,7 +199,7 @@ html {
 
 .header > .profile-info > .profile-name {
     font-size: x-large;
-    font-family: cursive;
+    font-family: Times New Roman, Times, serif;
     font-weight: bold;
     font-style: italic;
 
@@ -210,12 +210,12 @@ html {
 
 .header > .profile-info > .alumni-info {
     font-size: medium;
-    font-family: cursive;
+    font-family: Times New Roman, Times, serif;
 }
 
 .header > .profile-info > .profile-summary {
     font-size: large;
-    font-family: cursive;
+    font-family: Times New Roman, Times, serif;
 }
 
 
@@ -247,7 +247,7 @@ html {
 
     font-size: x-large;
     font-weight: bolder;
-    font-family: cursive;
+    font-family: Times New Roman, Times, serif;
 
     clip-path: polygon(
         0 0,
@@ -291,7 +291,7 @@ html {
 
     font-size: x-large;
     font-weight: bold;
-    font-family: cursive;
+    font-family: Times New Roman, Times, serif;
 
     /* Hidden initially */
     opacity: 0;
@@ -394,7 +394,7 @@ html {
 }
 
 .loader > .box > .box-text {
-    font-family: cursive;
+    font-family: Times New Roman, Times, serif;
 }
 
 
@@ -456,7 +456,7 @@ html {
     margin-left: 20px;
 
     font-size: medium;
-    font-family: cursive;
+    font-family: Times New Roman, Times, serif;
 
     transition:
         transform 0.4s ease,
@@ -488,4 +488,145 @@ html {
 
     z-index: 1;
 }
-```
+
+/* =========================================================
+   EDUCATION CONTENT
+   ========================================================= */
+
+.education-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+
+/* Central timeline line */
+.education-content::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    width: 3px;
+    background-color: black;
+
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+/* Animation for the education content */
+.education-content.animate {
+    animation: appear 1.5s ease-out forwards;
+}
+
+
+/* Each education item */
+.education-item {
+    position: relative;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    z-index: 1;
+}
+
+
+/* LEFT */
+.education-item:nth-child(odd) {
+    align-self: flex-start;
+    justify-content: flex-end;
+}
+
+.education-item:nth-child(odd)::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    right: -11%;
+
+    width: 11%;
+    height: 3px;
+
+    background-color: black;
+
+    transform: translateY(-50%);
+}
+
+.education-item:nth-child(even)::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: -11%;
+
+    width: 11%;
+    height: 3px;
+
+    background-color: black;
+
+    transform: translateY(-50%);
+}
+
+
+/* RIGHT */
+.education-item:nth-child(even) {
+    align-self: flex-end;
+    justify-content: flex-start;
+}
+
+
+/* Education content */
+.education-material{
+    padding: 1%;
+    border-radius: 20px;
+    font-family:'Times New Roman', Times, serif;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.education-material:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+    transition: 1s ease;
+    z-index: 1000;
+}
+
+.education-item:nth-child(odd) > .education-material{
+    text-align: right;
+}
+.education-item:nth-child(even) > .education-material{
+    text-align: left;
+}
+
+
+/* Circle */
+.education-item .circle {
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    background-color: orange;
+    border: 4px solid black;
+    border-radius: 50%;
+
+    z-index: 2;
+}
+
+
+/* Left item:*/
+.education-item:nth-child(odd) {
+    flex-direction: row;
+}
+
+
+/* Right item:*/
+.education-item:nth-child(even) {
+    flex-direction: row;
+}
