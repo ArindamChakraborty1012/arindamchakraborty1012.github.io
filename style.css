@@ -501,7 +501,6 @@ html {
     align-items: center;
     gap: 30px;
     margin-top: 30px;
-    margin: 2%;
 }
 
 
@@ -530,17 +529,17 @@ html {
 /* Each education item */
 .education-item {
     position: relative;
-    width: 45%;
+    width: 30%;
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 20px;
     z-index: 1;
-    margin: 2%
 }
 
 
 /* LEFT */
 .education-item:nth-child(odd) {
+    margin-left:10%;
     align-self: flex-start;
     justify-content: flex-end;
 }
@@ -551,9 +550,9 @@ html {
     position: absolute;
 
     top: 50%;
-    right: -6.9%;
+    right: -33%;
 
-    width: 8%;
+    width: 35%;
     height: 3px;
 
     background-color: black;
@@ -567,9 +566,9 @@ html {
     position: absolute;
 
     top: 50%;
-    left: -6.9%;
+    left: -33%;
 
-    width: 8%;
+    width: 35%;
     height: 3px;
 
     background-color: black;
@@ -580,12 +579,13 @@ html {
 
 /* RIGHT */
 .education-item:nth-child(even) {
+    margin-right:10%;
     align-self: flex-end;
     justify-content: flex-start;
 }
 
 
-/* Education material */
+/* Education content */
 .education-material{
     padding: 1%;
     border-radius: 20px;
