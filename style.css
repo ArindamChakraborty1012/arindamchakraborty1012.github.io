@@ -535,6 +535,7 @@ html {
     align-items: center;
     gap: 50px;
     z-index: 1;
+    margin: 2%
 }
 
 
@@ -550,9 +551,9 @@ html {
     position: absolute;
 
     top: 50%;
-    right: -11%;
+    right: -6.9%;
 
-    width: 11%;
+    width: 8%;
     height: 3px;
 
     background-color: black;
@@ -566,9 +567,9 @@ html {
     position: absolute;
 
     top: 50%;
-    left: -11%;
+    left: -6.9%;
 
-    width: 11%;
+    width: 8%;
     height: 3px;
 
     background-color: black;
@@ -584,7 +585,7 @@ html {
 }
 
 
-/* Education content */
+/* Education material */
 .education-material{
     padding: 1%;
     border-radius: 20px;
